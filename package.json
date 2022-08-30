@@ -1,0 +1,11 @@
+{
+  "name": "homework",
+  "version": "1.0.0",
+  "description": "nature reserve database",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Charley Ramm",
+  "license": "ISC"
+}
