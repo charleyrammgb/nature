@@ -1,42 +1,57 @@
 import fastify from "fastify";
-import fs from "fs";
 
 const app = fastify({ logger: false });
 
-const regions = [
+const sites = [
     {
-        "id": "1",
         "name": "Whitlingham Broad",
-        "location": 3
+        "areaId": 3
     },
     {
-        "id": "2",
         "name": "Mousehold Heath",
-        "location": 1
+        "areaId": 1
+    },
+    {
+        "name": "Plantation Garden",
+        "areaId": 4
+    },
+    {
+        "name": "Eaton Park",
+        "areaId": 4
     }
 ]
 
-const regionIds = {
+const areas = {
     "North Norwich": 1,
     "South Norwich": 2,
     "East Norwich": 3,
     "West Norwich": 4
 };
 
-app.get('/regions', async (request: any, reply: any) => {
-    return regions;
+
+app.get('/sites', async (request: any, reply: any) => {
+    return sites;
 });
 
-app.get('/regions/:locationId', async (request: any, reply: any) => {
-    const region = regions.find((region: any) => region.location === +request.params.locationId);
-    return { region };
+app.get('/areas', async (request: any, reply: any) => {
+    return areas;
+});
+
+app.get('/areas/:areaId', async (request: any, reply: any) => {
+    return sites.filter((r) => r.areaId === +request.params.areaId);
+});
+
+app.post('/sites/new', async (request: any, reply: any) => {
+    const newSite = {
+        name: request.body.name,
+        areaId: request.body.areaId
+    };
+    sites.push(newSite);
+    return newSite
 });
 
 app.listen(3000, (err: any, address: any) => {
-    if (err) {
-        app.log.error(err);
-        process.exit(1);
-    }
+    console.log('started webserver', address);
 });
 
 
