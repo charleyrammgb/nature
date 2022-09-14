@@ -8,7 +8,7 @@ export default async function routes (fastify: FastifyInstance) {
     });
 
     fastify.get('/sites/:id', async (request: any) => {
-        return dal.getSites(+request.params.id);
+        return dal.getSites(request.params.id);
     });
 
     fastify.get('/areas', async () => {
@@ -24,7 +24,7 @@ export default async function routes (fastify: FastifyInstance) {
     });
 
     fastify.post('/sites/:siteId/delete', async (request: any) => {
-        return dal.deleteSite(+request.params.siteId);
+        return dal.deleteSite(request.params.siteId);
     });
 }
 

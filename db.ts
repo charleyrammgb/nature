@@ -1,32 +1,26 @@
-const sites = [
-    {
-        "id": 1,
-        "name": "Whitlingham Broad",
-        "areaId": 3
-    },
-    {
-        "id": 2,
-        "name": "Mousehold Heath",
-        "areaId": 1
-    },
-    {
-        "id": 3,
-        "name": "Plantation Garden",
-        "areaId": 4
-    },
-    {
-        "id": 4,
-        "name": "Eaton Park",
-        "areaId": 4
-    }
-];
+import Site from "./models/Site";
+import Area from "./models/Area";
 
-const areas = {
-    1: "North Norwich",
-    2: "South Norwich",
-    3: "East Norwich",
-    4: "West Norwich"
-};
+const areas: Area[] = [];
+const sites: Site[] = [];
+
+function findAreaId(name: string){
+    const area: Area|undefined = areas.find((area: Area) => area.name === name);
+    if (area) return area.id;
+    else throw('Invalid area name');
+}
+
+
+areas.push(new Area('North Norwich'));
+areas.push(new Area('South Norwich'));
+areas.push(new Area('East Norwich'));
+areas.push(new Area('West Norwich'));
+
+sites.push(new Site('Whitlingham Broad', findAreaId('North Norwich')));
+sites.push(new Site('Mousehold Heath', findAreaId('North Norwich')));
+sites.push(new Site('Plantation Garden', findAreaId('North Norwich')));
+sites.push(new Site('Eaton Park', findAreaId('North Norwich')));
+
 
 const db = {
     sites: sites,
