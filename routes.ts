@@ -16,11 +16,11 @@ export default async function routes (fastify: FastifyInstance) {
     });
 
     fastify.get('/areas/:areaId', async (request: any) => {
-        return dal.getSites(+request.params.areaId);
+        return dal.getAreas(request.params.areaId);
     });
 
     fastify.post('/sites/new', async (request: any) => {
-        return dal.createSite(request.body.name, +request.body.areaId);
+        return dal.createSite(request.body.name, request.body.area);
     });
 
     fastify.post('/sites/:siteId/delete', async (request: any) => {

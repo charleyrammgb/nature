@@ -1,5 +1,9 @@
 import fastify from "fastify";
 import routes from "./routes";
+import populateDbDummyData from "./populateDbDummyData";
+
+populateDbDummyData();
+
 
 const app = fastify({ logger: false });
 
